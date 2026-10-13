@@ -1,0 +1,14 @@
+{
+  "name": "four-camps-classroom-game-v2",
+  "version": "2.0.0",
+  "private": true,
+  "description": "四陣營課堂競技平台 v2 雲端多人版",
+  "main": "server.js",
+  "engines": {"node": ">=20 <25"},
+  "scripts": {"start": "node server.js"},
+  "dependencies": {
+    "express": "^5.1.0",
+    "qrcode": "^1.5.4",
+    "socket.io": "^4.8.1"
+  }
+}
