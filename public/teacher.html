@@ -1,0 +1,29 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>教師控制台｜四陣營課堂競技平台</title><link rel="stylesheet" href="styles.css"></head><body>
+<div class="shell">
+  <div class="topbar"><div class="brand"><div class="brand-mark">師</div><div><h1>教師控制台</h1><p>先編輯題目，再建立房間</p></div></div><a class="btn ghost" href="index.html">首頁</a></div>
+  <div class="grid two">
+    <section class="card">
+      <div class="section-title"><h2>① 題庫</h2><div class="row"><button id="loadSample" class="btn small ghost">載入示例</button><button id="exportBtn" class="btn small ghost">匯出</button><label class="btn small ghost" style="margin:0">匯入<input id="importFile" type="file" accept="application/json" hidden></label></div></div>
+      <div class="notice">題目會儲存在這部教師裝置的瀏覽器內。你可隨時修改、刪除或新增，再開新一局。</div>
+      <div style="height:14px"></div>
+      <div class="field"><label>題目</label><textarea id="prompt" placeholder="例如：哪一個詞語表示重新恢復知覺？"></textarea></div>
+      <div class="grid two">
+        <div><div class="field"><label>選項 A</label><input id="o0"></div><div class="field"><label>選項 C</label><input id="o2"></div></div>
+        <div><div class="field"><label>選項 B</label><input id="o1"></div><div class="field"><label>選項 D</label><input id="o3"></div></div>
+      </div>
+      <div class="row"><div class="grow field"><label>正確答案</label><select id="correct"><option value="0">A</option><option value="1">B</option><option value="2">C</option><option value="3">D</option></select></div><div style="width:130px" class="field"><label>作答時間</label><select id="duration"><option>8</option><option selected>12</option><option>15</option><option>20</option></select></div></div>
+      <div class="row"><button id="saveQuestion" class="btn accent">新增題目</button><button id="cancelEdit" class="btn ghost hidden">取消編輯</button><span id="editHint" class="muted"></span></div>
+      <div style="height:18px"></div><div class="section-title"><h3>題目列表 <span id="qCount" class="muted"></span></h3><button id="clearAll" class="btn small danger">清空</button></div><div id="qList" class="q-list"></div>
+    </section>
+    <div class="grid">
+      <section class="card"><div class="section-title"><h2>② 四個陣營</h2></div><div id="teamEditor" class="team-grid"></div></section>
+      <section class="card" id="roomPanel"><div class="section-title"><h2>③ 建立房間</h2></div><p class="muted">建立後，學生可掃 QR Code 或輸入 6 位房間碼加入。</p><button id="createRoom" class="btn primary" style="width:100%;font-size:18px">建立多人房間</button><div id="roomArea" class="hidden"></div><p id="roomMsg" class="error"></p></section>
+    </div>
+  </div>
+  <div style="height:18px"></div>
+  <section id="livePanel" class="card hidden">
+    <div class="section-title"><h2>④ 即時遊戲控制</h2><div class="row"><span id="statusPill" class="pill">等待加入</span><button id="syncQuestions" class="btn small ghost">同步最新題目</button><button id="resetLobby" class="btn small ghost">回到大堂</button></div></div>
+    <div class="grid two"><div><div class="score-teams" id="scoreTeams"></div><div style="height:16px"></div><div class="section-title"><h3>已加入學生 <span id="playerCount" class="muted"></span></h3></div><div id="playerList" class="player-list"></div></div><div class="card" style="background:#0d1626"><div id="nowQuestion"><h3>等待開始</h3><p class="muted">有學生加入後即可開始。</p></div><div style="height:12px"></div><button id="startGame" class="btn accent" style="width:100%;font-size:20px">開始遊戲</button><p id="progress" class="muted"></p></div></div>
+  </section>
+</div>
+<script src="/socket.io/socket.io.js"></script><script src="teacher.js"></script></body></html>
